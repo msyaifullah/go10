@@ -1,0 +1,24 @@
+# CLI Configuration
+debug: true
+
+# Database configuration
+database:
+  host: "localhost"
+  port: 5432
+  name: "go10db"
+  user: "root"
+  password: "changeMe123"
+
+# Environment variables template
+environment:
+  required_vars:
+    - "DATABASE_URL"
+    - "API_KEY"
+    - "ENVIRONMENT"
+  
+# Migration settings
+migration:
+  path: "migrations"
+  driver: "postgres"
+  timeout: 30
+  retries: 3 

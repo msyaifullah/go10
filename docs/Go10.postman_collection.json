@@ -1,0 +1,668 @@
+{
+	"info": {
+		"_postman_id": "1104842b-decb-4e6f-a5d7-f83e59cedbd8",
+		"name": "Go10",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "185644"
+	},
+	"item": [
+		{
+			"name": "Loan",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Request-ID",
+						"value": "RQID-{{$guid}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer mamamam",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"borrower_id\": \"550e8400-e29b-41d4-a716-446655440001\",\n    \"principal_amount\": 10000000.00,\n    \"interest_rate\": 0.1,\n    \"roi\": 0.08\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8080/api/v1/disbursements \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"wallet_id\": \"f5jjgh99-9c0b-4ef8-bb6d-6bb9bd380a66\",\n    \"amount\": 100.00,\n    \"currency\": \"USD\",\n    \"recipient_name\": \"John Doe\",\n    \"recipient_bank\": \"Bank ABC\",\n    \"account_number\": \"1234567890\",\n    \"reference\": \"PAYMENT-2024-01\"\n  }'"
+			},
+			"response": [
+				{
+					"name": "Loan",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Request-ID",
+								"value": "RQID-{{$guid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"borrower_id\": \"550e8400-e29b-41d4-a716-446655440001\",\n    \"principal_amount\": 5000000.00,\n    \"interest_rate\": 0.10,\n    \"roi\": 0.08\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/loans",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"loans"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "RQID-885a4946-2d4b-4b61-91df-3b80f93ddbf5"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 25 Jul 2025 08:49:45 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "387"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"Loan created successfully\",\n    \"code\": \"SUCCESS\",\n    \"data\": {\n        \"id\": \"1241dd30-0b81-4a18-a371-df32f8c24979\",\n        \"borrower_name\": \"John Doe\",\n        \"principal_amount\": 5000000,\n        \"interest_rate\": 0.1,\n        \"roi\": 0.08,\n        \"state\": \"proposed\",\n        \"total_invested\": 0,\n        \"remaining_investment\": 5000000,\n        \"investor_count\": 0,\n        \"created_at\": \"2025-07-25T08:49:45.395761Z\",\n        \"updated_at\": \"2025-07-25T08:49:45.395761Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "loans",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"wallet_id\": \"f5bbcc99-9c0b-4ef8-bb6d-6bb9bd380a88\",\n    \"amount\": 5.01,\n    \"currency\": \"USD\",\n    \"recipient_name\": \"{{$randomFullName}}\",\n    \"recipient_bank\": \"Bank ABC\",\n    \"account_number\": \"{{$randomBankAccount}}\",\n    \"reference\": \"TRX-{{$guid}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/:loanId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						":loanId"
+					],
+					"variable": [
+						{
+							"key": "loanId",
+							"value": "dc36f44d-d808-4ed0-aba2-fd02aa8d2818"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8080/api/v1/disbursements \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"wallet_id\": \"f5jjgh99-9c0b-4ef8-bb6d-6bb9bd380a66\",\n    \"amount\": 100.00,\n    \"currency\": \"USD\",\n    \"recipient_name\": \"John Doe\",\n    \"recipient_bank\": \"Bank ABC\",\n    \"account_number\": \"1234567890\",\n    \"reference\": \"PAYMENT-2024-01\"\n  }'"
+			},
+			"response": [
+				{
+					"name": "loans",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"wallet_id\": \"f5bbcc99-9c0b-4ef8-bb6d-6bb9bd380a88\",\n    \"amount\": 5.01,\n    \"currency\": \"USD\",\n    \"recipient_name\": \"{{$randomFullName}}\",\n    \"recipient_bank\": \"Bank ABC\",\n    \"account_number\": \"{{$randomBankAccount}}\",\n    \"reference\": \"TRX-{{$guid}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/loans/:loanId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"loans",
+								":loanId"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": "880e8400-e29b-41d4-a716-446655440001"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "30MPUITcaqkXJy6rWyRePdxSNTA"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 25 Jul 2025 09:08:02 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "387"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"Loan retrieved successfully\",\n    \"code\": \"SUCCESS\",\n    \"data\": {\n        \"id\": \"880e8400-e29b-41d4-a716-446655440001\",\n        \"borrower_name\": \"John Doe\",\n        \"principal_amount\": 100000000,\n        \"interest_rate\": 0.12,\n        \"roi\": 0.1,\n        \"state\": \"disbursed\",\n        \"total_invested\": 100000000,\n        \"remaining_investment\": 0,\n        \"investor_count\": 0,\n        \"created_at\": \"2024-01-15T03:00:00Z\",\n        \"updated_at\": \"2025-07-24T15:09:42.840119Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "approve",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"validator_id\": \"660e8400-e29b-41d4-a716-446655440004\",\n    \"approval_date\": \"2025-07-24T11:00:00Z\",\n    \"visit_proof_image_url\": \"https://storage.go10.com/proofs/visit-123.jpg\",\n    \"visit_proof_image_type\": \"jpeg\",\n    \"notes\": \"Borrower verified, business location confirmed\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/:loanId/approve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						":loanId",
+						"approve"
+					],
+					"variable": [
+						{
+							"key": "loanId",
+							"value": "e01de74a-2c6e-4af9-8a6f-67e57960b69e"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8080/api/v1/disbursements \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"wallet_id\": \"f5jjgh99-9c0b-4ef8-bb6d-6bb9bd380a66\",\n    \"amount\": 100.00,\n    \"currency\": \"USD\",\n    \"recipient_name\": \"John Doe\",\n    \"recipient_bank\": \"Bank ABC\",\n    \"account_number\": \"1234567890\",\n    \"reference\": \"PAYMENT-2024-01\"\n  }'"
+			},
+			"response": [
+				{
+					"name": "approve",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"validator_id\": \"660e8400-e29b-41d4-a716-446655440004\",\n    \"approval_date\": \"2025-07-24T11:00:00Z\",\n    \"visit_proof_image_url\": \"https://storage.go10.com/proofs/visit-123.jpg\",\n    \"visit_proof_image_type\": \"jpeg\",\n    \"notes\": \"Borrower verified, business location confirmed\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/loans/:loanId/approve",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"loans",
+								":loanId",
+								"approve"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": "8906b826-2bd6-484b-9d1d-092a676f783e"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "30NE2PTsRh3PTvw8MoReASNU4Rz"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 25 Jul 2025 16:03:42 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "454"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"Loan approved successfully\",\n    \"code\": \"SUCCESS\",\n    \"data\": {\n        \"approval_date\": \"2025-07-24T11:00:00Z\",\n        \"id\": \"d98851df-4cb2-4763-a3ca-6e859c098124\",\n        \"loan_id\": \"8906b826-2bd6-484b-9d1d-092a676f783e\",\n        \"notes\": \"Borrower verified, business location confirmed\",\n        \"state\": \"approved\",\n        \"validator_id\": \"660e8400-e29b-41d4-a716-446655440004\",\n        \"visit_proof_image_type\": \"jpeg\",\n        \"visit_proof_image_url\": \"https://storage.go10.com/proofs/visit-123.jpg\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "invest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"investor_id\": \"770e8400-e29b-41d4-a716-446655440004\",\n    \"amount\": 3000000.00,\n    \"investment_date\": \"2025-07-24T11:00:00Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/:loanId/invest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						":loanId",
+						"invest"
+					],
+					"variable": [
+						{
+							"key": "loanId",
+							"value": "e01de74a-2c6e-4af9-8a6f-67e57960b69e"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8080/api/v1/disbursements \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"wallet_id\": \"f5jjgh99-9c0b-4ef8-bb6d-6bb9bd380a66\",\n    \"amount\": 100.00,\n    \"currency\": \"USD\",\n    \"recipient_name\": \"John Doe\",\n    \"recipient_bank\": \"Bank ABC\",\n    \"account_number\": \"1234567890\",\n    \"reference\": \"PAYMENT-2024-01\"\n  }'"
+			},
+			"response": [
+				{
+					"name": "invest",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"investor_id\": \"770e8400-e29b-41d4-a716-446655440004\",\n    \"amount\": 4000000.00,\n    \"investment_date\": \"2025-07-24T11:00:00Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/loans/:loanId/invest",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"loans",
+								":loanId",
+								"invest"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": "8906b826-2bd6-484b-9d1d-092a676f783e"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "30NEEiZI7nknQtQvH10NW1itXBq"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 25 Jul 2025 16:05:20 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "408"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"Investment processed successfully\",\n    \"code\": \"SUCCESS\",\n    \"data\": {\n        \"id\": \"ca9e7edf-e3b1-4cdc-99b9-c5d1def6fde2\",\n        \"loan_id\": \"8906b826-2bd6-484b-9d1d-092a676f783e\",\n        \"investor_id\": \"770e8400-e29b-41d4-a716-446655440004\",\n        \"amount\": 4000000,\n        \"expected_return\": 4320000,\n        \"investment_date\": \"2025-07-24T11:00:00Z\",\n        \"created_at\": \"2025-07-25T16:05:20.365281Z\",\n        \"updated_at\": \"2025-07-25T16:05:20.365281Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "disburse",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"field_officer_id\": \"660e8400-e29b-41d4-a716-446655440001\",\n    \"disbursement_date\": \"2025-07-24T14:00:00Z\",\n    \"signed_agreement_url\": \"https://storage.go10.com/agreements/signed-123.pdf\",\n    \"signed_agreement_file_type\": \"pdf\",\n    \"disbursed_amount\": 10000000.00,\n    \"notes\": \"Loan disbursed successfully to borrower account\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/:loanId/disburse",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						":loanId",
+						"disburse"
+					],
+					"variable": [
+						{
+							"key": "loanId",
+							"value": "e01de74a-2c6e-4af9-8a6f-67e57960b69e"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8080/api/v1/disbursements \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"wallet_id\": \"f5jjgh99-9c0b-4ef8-bb6d-6bb9bd380a66\",\n    \"amount\": 100.00,\n    \"currency\": \"USD\",\n    \"recipient_name\": \"John Doe\",\n    \"recipient_bank\": \"Bank ABC\",\n    \"account_number\": \"1234567890\",\n    \"reference\": \"PAYMENT-2024-01\"\n  }'"
+			},
+			"response": [
+				{
+					"name": "disburse",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"field_officer_id\": \"660e8400-e29b-41d4-a716-446655440001\",\n    \"disbursement_date\": \"2025-07-24T14:00:00Z\",\n    \"signed_agreement_url\": \"https://storage.go10.com/agreements/signed-123.pdf\",\n    \"signed_agreement_file_type\": \"pdf\",\n    \"disbursed_amount\": 80000000.00,\n    \"notes\": \"Loan disbursed successfully to borrower account\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/loans/:loanId/disburse",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"loans",
+								":loanId",
+								"disburse"
+							],
+							"variable": [
+								{
+									"key": "loanId",
+									"value": "880e8400-e29b-41d4-a716-446655440004"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "30Oov3OJMCb9mk2vNnr2IAZpTai"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 26 Jul 2025 05:36:46 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "566"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"Loan disbursed successfully\",\n    \"code\": \"SUCCESS\",\n    \"data\": {\n        \"id\": \"abeb1b13-24e8-4b40-b2b9-a86300e9cd9b\",\n        \"loan_id\": \"880e8400-e29b-41d4-a716-446655440004\",\n        \"field_officer_id\": \"660e8400-e29b-41d4-a716-446655440001\",\n        \"disbursement_date\": \"2025-07-24T14:00:00Z\",\n        \"signed_agreement_url\": \"https://storage.go10.com/agreements/signed-123.pdf\",\n        \"signed_agreement_file_type\": \"pdf\",\n        \"disbursed_amount\": 80000000,\n        \"notes\": \"Loan disbursed successfully to borrower account\",\n        \"created_at\": \"2025-07-26T05:36:46.077769Z\",\n        \"updated_at\": \"2025-07-26T05:36:46.077769Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "upload",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/masykurisyaifullah/Workspace/Interview/paper/docs/Take Home Test - Engineer.pdf"
+						},
+						{
+							"key": "entity_type",
+							"value": "loan",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/files/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"files",
+						"upload"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8080/api/v1/disbursements \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"wallet_id\": \"f5jjgh99-9c0b-4ef8-bb6d-6bb9bd380a66\",\n    \"amount\": 100.00,\n    \"currency\": \"USD\",\n    \"recipient_name\": \"John Doe\",\n    \"recipient_bank\": \"Bank ABC\",\n    \"account_number\": \"1234567890\",\n    \"reference\": \"PAYMENT-2024-01\"\n  }'"
+			},
+			"response": [
+				{
+					"name": "upload",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/masykurisyaifullah/Workspace/Interview/paper/docs/Take Home Test - Engineer.pdf"
+								},
+								{
+									"key": "entity_type",
+									"value": "loan",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/files/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"files",
+								"upload"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "30RqFViujiSleSwjRRm11pnA6j1"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 27 Jul 2025 07:17:09 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "609"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"File uploaded successfully\",\n    \"code\": \"SUCCESS\",\n    \"data\": {\n        \"id\": \"e30a6548-a78c-4b61-b1a0-d9c9e3a0e5f8\",\n        \"created_at\": \"2025-07-27T14:17:09.206951+07:00\",\n        \"updated_at\": \"2025-07-27T14:17:09.206951+07:00\",\n        \"file_name\": \"agreements/loan_a3f34d7a.pdf\",\n        \"file_type\": \"pdf\",\n        \"file_size\": 37671,\n        \"file_path\": \"/uploads/agreements/loan_a3f34d7a.pdf\",\n        \"file_url\": \"https://storage.example.com/uploads/agreements/loan_a3f34d7a.pdf\",\n        \"content_type\": \"application/pdf\",\n        \"uploaded_by\": \"00000000-0000-0000-0000-000000000000\",\n        \"entity_type\": \"loan\",\n        \"entity_id\": \"00000000-0000-0000-0000-000000000000\",\n        \"is_active\": true\n    }\n}"
+				}
+			]
+		}
+	]
+}
