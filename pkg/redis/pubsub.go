@@ -227,6 +227,11 @@ func (p *PubSubService) Broadcast(ctx context.Context, channels []string, payloa
 	return nil
 }
 
+/**
+For now is only store the message in redis and not send it to the channel.
+We need to send it to the channel in the future.
+or we can have worker to send the message to the channel.
+*/
 // PublishDelayed publishes a message with a delay using Redis
 func (p *PubSubService) PublishDelayed(ctx context.Context, channel string, payload interface{}, delay time.Duration) error {
 	// Create a delayed message key
