@@ -1,0 +1,59 @@
+
+services:
+# postgres
+  db_postgres:
+    image: postgres:15-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: changeMe123
+      POSTGRES_DB: go10db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d go10db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+# redis and client service
+  redis:
+    hostname: redis
+    image: redis:alpine
+    command: redis-server --requirepass changeMe123
+    volumes:
+      - $PWD/redis-data:/var/lib/redis
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "changeMe123", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+# rabbitmq
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    restart: always
+    container_name: 'rabbitmq'
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=root
+      - RABBITMQ_DEFAULT_PASS=changeMe123
+
+# redisinsight
+  redisinsight:
+    image: redis/redisinsight:latest
+    restart: always
+    ports:
+      - 5540:5540
+    depends_on:
+      - redis
+      
+volumes:
+  db_postgres:
