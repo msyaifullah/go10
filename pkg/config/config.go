@@ -12,6 +12,7 @@ type Config struct {
 	App      AppConfig      `toml:"app"`
 	Server   ServerConfig   `toml:"server"`
 	Database DatabaseConfig `toml:"database"`
+	Redis    RedisConfig    `toml:"redis"`
 	Logger   LoggerConfig   `toml:"logger"`
 	Email    EmailConfig    `toml:"email"`
 	Payment  PaymentConfig  `toml:"payment"`
@@ -42,6 +43,21 @@ type DatabaseConfig struct {
 	MaxOpenConns    int           `toml:"max_open_conns"`
 	MaxIdleConns    int           `toml:"max_idle_conns"`
 	ConnMaxLifetime time.Duration `toml:"conn_max_lifetime"`
+}
+
+type RedisConfig struct {
+	Host         string        `toml:"host"`
+	Port         int           `toml:"port"`
+	Password     string        `toml:"password"`
+	DB           int           `toml:"db"`
+	PoolSize     int           `toml:"pool_size"`
+	MinIdleConns int           `toml:"min_idle_conns"`
+	MaxRetries   int           `toml:"max_retries"`
+	DialTimeout  time.Duration `toml:"dial_timeout"`
+	ReadTimeout  time.Duration `toml:"read_timeout"`
+	WriteTimeout time.Duration `toml:"write_timeout"`
+	PoolTimeout  time.Duration `toml:"pool_timeout"`
+	IdleTimeout  time.Duration `toml:"idle_timeout"`
 }
 
 type LoggerConfig struct {

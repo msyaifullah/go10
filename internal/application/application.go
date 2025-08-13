@@ -11,6 +11,7 @@ import (
 	"loan-service/pkg/adapters"
 	"loan-service/pkg/config"
 	"loan-service/pkg/logger"
+	"loan-service/pkg/redis"
 )
 
 type Application struct {
@@ -18,6 +19,7 @@ type Application struct {
 	Config *config.Config
 	Logger *logger.Logger
 	DB     *sql.DB
+	Redis  *redis.RedisClient
 
 	// Repositories
 	LoanRepo repositories.LoanRepositoryInterface
@@ -52,6 +54,19 @@ func (app *Application) WithLogger(logger *logger.Logger) *Application {
 
 func (app *Application) WithDatabase(db *sql.DB) *Application {
 	app.DB = db
+	return app
+}
+
+func (app *Application) WithRedis() *Application {
+	redisClient, err := redis.NewConnection(app.Config.Redis, app.Logger)
+	if err != nil {
+		app.Logger.Error("Failed to initialize Redis", map[string]interface{}{
+			"error": err.Error(),
+		})
+		// You might want to handle this error differently based on your requirements
+		// For now, we'll just log the error and continue
+	}
+	app.Redis = redisClient
 	return app
 }
 
@@ -102,6 +117,9 @@ func (app *Application) Validate() error {
 	}
 	if app.DB == nil {
 		return errors.New("database not initialized")
+	}
+	if app.Redis == nil {
+		return errors.New("redis not initialized")
 	}
 
 	return nil

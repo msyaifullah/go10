@@ -21,6 +21,20 @@ max_open_conns = 25
 max_idle_conns = 5
 conn_max_lifetime = "5m"
 
+[redis]
+host = "localhost"
+port = 6379
+password = ""
+db = 0
+pool_size = 10
+min_idle_conns = 2
+max_retries = 3
+dial_timeout = "5s"
+read_timeout = "3s"
+write_timeout = "3s"
+pool_timeout = "4s"
+idle_timeout = "5m"
+
 [logger]
 level = "debug"
 format = "json"

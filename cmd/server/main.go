@@ -43,6 +43,7 @@ func main() {
 		WithConfig(cfg).
 		WithLogger(appLogger).
 		WithDatabase(db).
+		WithRedis().
 		WithRepositories().
 		WithAdapters().
 		WithServices().
